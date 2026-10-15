@@ -22,7 +22,7 @@ Vite builds both `index.html` and `projects.html` into `dist/` for static hostin
 
 ## Personalize
 
-Edit `main.js` to update the résumé-based experience, introduction, and LinkedIn profile. Career details were supplied in Daniel’s résumé. Project cards remain illustrative concepts and should be replaced with verified projects and case studies. The construction illustration is a local SVG in `public/images/digital-structure.svg`. Typography uses Google Fonts with local system font fallbacks.
+Edit `main.js` to update the résumé-based experience, introduction, and LinkedIn profile. Career details were supplied in Daniel’s résumé. Project cards remain illustrative concepts and should be replaced with verified projects and case studies. The homepage portrait is Daniel’s uploaded photo in `public/images/FrontPgaePhoto.jpg`; CSS frames it for desktop and mobile. Typography uses Google Fonts with local system font fallbacks.
 
 ## GitHub Pages
 
