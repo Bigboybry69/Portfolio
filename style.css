@@ -14,3 +14,5 @@ body{background-image:linear-gradient(#28415712 1px,transparent 1px),linear-grad
 .personal-photo img{object-position:50% 78%}.personal-photo .photo-shade{background:linear-gradient(transparent 65%,#08131db3)}
 /* Reveal career entries once as they enter the viewport. */
 @media(prefers-reduced-motion:no-preference){.experience-reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.65,.3,1)}.experience-reveal.experience-visible{opacity:1;transform:translateY(0)}}
+/* Social profile links */
+.instagram-link{color:var(--text)}.instagram-link span{color:var(--blue);margin-left:6px}.contact-socials{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.secondary{border:1px solid #55758b;color:var(--text);background:#112331}.secondary:hover{background:#20394a;color:var(--blue);transform:translateY(-2px)}@media(max-width:900px){.contact-bottom{flex-wrap:wrap}}@media(max-width:600px){nav{gap:17px}.instagram-link{font-size:11px}.instagram-link span{display:none}.contact-socials{gap:10px}.contact-socials .button{font-size:11px;gap:12px;padding:14px}}
