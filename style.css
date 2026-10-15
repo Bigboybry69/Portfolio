@@ -12,3 +12,5 @@ body{background-image:linear-gradient(#28415712 1px,transparent 1px),linear-grad
 
 /* Personal portrait: keep Daniel centered across screen sizes. */
 .personal-photo img{object-position:50% 78%}.personal-photo .photo-shade{background:linear-gradient(transparent 65%,#08131db3)}
+/* Reveal career entries once as they enter the viewport. */
+@media(prefers-reduced-motion:no-preference){.experience-reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.65,.3,1)}.experience-reveal.experience-visible{opacity:1;transform:translateY(0)}}
