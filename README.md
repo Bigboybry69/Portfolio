@@ -22,7 +22,7 @@ Vite builds both `index.html` and `projects.html` into `dist/` for static hostin
 
 ## Personalize
 
-Edit `main.js` to replace the introductory copy, experience placeholder, and illustrative project concepts with Daniel’s verified details. Both LinkedIn links currently point to the LinkedIn homepage; replace them with Daniel’s profile URL. The forest photograph is a temporary photo placeholder from Unsplash; replace it with Daniel’s own photo. Typography uses Google Fonts with local system font fallbacks.
+Edit `main.js` to replace the introductory copy, experience placeholder, and illustrative project concepts with Daniel’s verified details. Both LinkedIn links currently point to the LinkedIn homepage; replace them with Daniel’s profile URL. The construction illustration is a local SVG in `public/images/digital-structure.svg`. Replace it with a personal or project photo if desired. Typography uses Google Fonts with local system font fallbacks.
 
 ## GitHub Pages
 
