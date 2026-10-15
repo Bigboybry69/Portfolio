@@ -34,4 +34,4 @@ The site uses `dli95.com`, declared in `public/CNAME` and copied to `docs/CNAME`
 
 ## My Story
 
-`my-story.html` shares résumé-based career context, with content in `main.js`. The personal motivation section is a clearly marked placeholder awaiting Daniel’s own story.
+`my-story.html` shares Daniel’s personal account of growing up around residential construction, his interest in technology, and his résumé-based career context. Edit the story content in `main.js`.
