@@ -15,26 +15,36 @@ const scanDetail = `<main class="scan-detail wrap"><nav class="project-breadcrum
 const trafficDetail = `<main class="scan-detail wrap"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="./projects.html">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Project Rendering &amp; Proposal</span></nav><section class="scan-detail-heading"><div class="eyebrow"><span class="status-dot"></span> CONSTRUCTION VISUALIZATION / PROJECT SPOTLIGHT</div><h1>Project Rendering<br><em>&amp; Proposal.</em></h1><p>Visualizing roadwork and traffic control<br>through different phases of construction.</p><div class="tags"><span>Construction Phasing</span><span>Traffic Control</span><span>Lumion Rendering</span></div></section><figure class="scan-detail-video"><div class="scan-video-player"><iframe src="https://www.youtube-nocookie.com/embed/P_0hqkJ4qEQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;controls=0" title="Project Rendering &amp; Proposal — construction traffic phasing video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption>Roadwork and traffic-control phasing visualization. Plays muted; click or tap the video to pause or resume.</figcaption></figure><div class="scan-detail-body"><aside class="scan-facts" aria-label="Project at a glance"><div class="eyebrow">AT A GLANCE</div><dl><dt>Focus</dt><dd>Roadwork Phasing &amp; Traffic Control</dd><dt>Modeling</dt><dd>SketchUp</dd><dt>Rendering</dt><dd>Lumion</dd><dt>Video Editing</dt><dd>DaVinci Resolve</dd></dl></aside><div class="scan-detail-copy"><section><div class="eyebrow">01 / OVERVIEW</div><h2>Making the construction plan visible.</h2><p>This project uses a modeled roadwork scenario to show traffic control during different phases of construction. The rendering presents the work area alongside vehicles and the surrounding streetscape, helping communicate the proposed construction sequence.</p><p>The scene was modeled in SketchUp and rendered in Lumion, with DaVinci Resolve used for video editing.</p></section><section><div class="eyebrow">02 / A CLOSER LOOK</div><h2>Communicating each phase.</h2><ul><li><strong>Construction phasing:</strong> visualizing roadwork across different stages of the project.</li><li><strong>Traffic control:</strong> showing how traffic is managed around the construction area during each phase.</li><li><strong>Project presentation:</strong> combining SketchUp modeling, Lumion rendering, and DaVinci Resolve video editing to communicate the proposal.</li></ul></section></div></div><div class="scan-detail-end"><a class="button primary" href="./projects.html">Back to projects <span aria-hidden="true">↗</span></a><a class="text-link" href="./">Home <span aria-hidden="true">↗</span></a></div></main>`;
 document.querySelector('#app').innerHTML = header + (trafficPage ? trafficDetail : scanPage ? scanDetail : storyPage ? story : projectsPage ? projects : home) + footer;
 
-// Reveal each experience once, keeping all content visible without observer support.
+// Reveal page sections once; content stays visible without observer support.
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 if (!motionPreference.matches && 'IntersectionObserver' in window) {
-  const experienceItems = document.querySelectorAll('#experience .section-heading, #experience .career-row');
-  const observer = new IntersectionObserver((entries) => {
+  const candidates = [...document.querySelectorAll(
+    'main section, .project-card, .career-row, #experience .section-heading, .selected > .section-heading, .story-photo, .scan-facts, main > figure, .scan-detail-end, footer'
+  )];
+  // Animate the content within large sections instead of hiding their entire container.
+  const revealItems = candidates.filter(item => !candidates.some(other => other !== item && item.contains(other)));
+  const reveal = target => {
+    target.classList.add('scroll-visible');
+    observer.unobserve(target);
+  };
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(({ isIntersecting, target }) => {
-      if (isIntersecting) {
-        target.classList.add('experience-visible');
-        observer.unobserve(target);
-      }
+      if (isIntersecting) reveal(target);
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-  experienceItems.forEach((item) => {
-    item.classList.add('experience-reveal');
+  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+  revealItems.forEach(item => {
+    item.classList.add('scroll-reveal');
     observer.observe(item);
+  });
+  // Keyboard navigation and anchor links should never land on hidden content.
+  document.addEventListener('focusin', event => {
+    const target = event.target.closest('.scroll-reveal');
+    if (target) reveal(target);
   });
   motionPreference.addEventListener('change', ({ matches }) => {
     if (matches) {
       observer.disconnect();
-      experienceItems.forEach((item) => item.classList.add('experience-visible'));
+      revealItems.forEach(item => item.classList.add('scroll-visible'));
     }
   });
 }
