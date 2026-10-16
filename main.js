@@ -42,7 +42,18 @@ if (!motionPreference.matches && 'IntersectionObserver' in window) {
 // Keep labels facing the reader while their positions rotate in a sphere.
 const cloud = document.querySelector('.skill-cloud');
 if (cloud) {
-  const words = [...cloud.querySelectorAll('.cloud-word')];
+  const coreTools = new Set(['Revit', 'Navisworks', 'Forma', 'eVolve', 'SysQue', 'AutoCAD', 'Bluebeam']);
+  const labels = [...cloud.querySelectorAll('.cloud-word')];
+  const primary = labels.filter(word => coreTools.has(word.textContent));
+  const supporting = labels.filter(word => !coreTools.has(word.textContent));
+  primary.forEach(word => word.classList.add('cloud-word-primary'));
+  // Spread core tools around the sphere rather than grouping them at one pole.
+  const words = [];
+  supporting.forEach((word, index) => {
+    if (index % 3 === 0 && primary.length) words.push(primary.shift());
+    words.push(word);
+  });
+  words.push(...primary);
   const toggle = document.querySelector('.cloud-toggle');
   let angle = 0;
   let paused = false;
@@ -63,9 +74,9 @@ if (cloud) {
       const x = point.x * Math.cos(angle) - point.z * Math.sin(angle);
       const z = point.x * Math.sin(angle) + point.z * Math.cos(angle);
       const depth = (z + 1) / 2;
-      word.style.transform = `translate(-50%, -50%) translate(${x * radiusX}px, ${point.y * radiusY}px) scale(${0.72 + depth * 0.38})`;
-      word.style.opacity = `${0.36 + depth * 0.64}`;
-      word.style.zIndex = `${Math.round(depth * 100)}`;
+      word.style.transform = `translate(-50%, -50%) translate(${x * radiusX}px, ${point.y * radiusY}px) scale(${word.classList.contains('cloud-word-primary') ? 0.95 + depth * 0.2 : 0.68 + depth * 0.28})`;
+      word.style.opacity = `${word.classList.contains('cloud-word-primary') ? 0.82 + depth * 0.18 : 0.3 + depth * 0.4}`;
+      word.style.zIndex = `${Math.round(depth * 100) + (word.classList.contains('cloud-word-primary') ? 100 : 0)}`;
     });
   }
   function animate(now) {
