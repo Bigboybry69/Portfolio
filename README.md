@@ -32,6 +32,6 @@ The `docs/` folder contains the published build. In repository Settings → Page
 
 The site uses `dli95.com`, declared in `public/CNAME` and copied to `docs/CNAME` during builds. Configure GitHub Pages with this custom domain. At the domain provider, point the apex (`@`) A records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`; point `www` via CNAME to `bigboybry69.github.io`. Enable Enforce HTTPS in GitHub Pages once the certificate is ready.
 
-## My Story
+## About Me
 
 `my-story.html` shares Daniel’s personal account of growing up around residential construction, his interest in technology, and his résumé-based career context. Edit the story content in `main.js`.
