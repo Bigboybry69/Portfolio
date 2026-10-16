@@ -49,13 +49,8 @@ a.scan-image-project{display:block;color:var(--text);transition:border-color .2s
 /* Mobile links use text buttons; only expandable controls retain a chevron. */
 @media(max-width:600px){
 .link-arrow{display:none!important}
-.text-link,.project-title h3>a,.project-breadcrumb>a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid #3b576c;border-radius:11px;background:#11212e;color:var(--text);gap:0;line-height:1.4;text-decoration:none}
-.text-link:hover,.project-title h3>a:hover,.project-breadcrumb>a:hover{color:var(--green);border-color:var(--green);background:#1b3243}
-.project-title h3>a{font-size:15px;text-align:left;justify-content:flex-start}
-.header nav{gap:7px}
-.header nav>a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 11px;border-radius:10px;background:#11212e;border:1px solid #283f50;color:var(--text);font-size:11px}
-.header nav>a.active{border-color:#6a9250;color:var(--green)}
-.header nav>a.active:after{display:none}
+.text-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid #3b576c;border-radius:11px;background:#11212e;color:var(--text);gap:0;line-height:1.4;text-decoration:none}
+.text-link:hover{color:var(--green);border-color:var(--green);background:#1b3243}
 .skills-toolkit summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:44px;padding:10px 14px;border:1px solid #3b576c;border-radius:11px;background:#11212e}
 .skills-toolkit summary::marker{content:''}
 .skills-toolkit summary::-webkit-details-marker{display:none}
