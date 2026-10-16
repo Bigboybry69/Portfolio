@@ -35,3 +35,9 @@ The site uses `dli95.com`, declared in `public/CNAME` and copied to `docs/CNAME`
 ## About Me
 
 `my-story.html` shares Daniel’s personal account of growing up around residential construction, his interest in technology, and his résumé-based career context. Edit the story content in `main.js`.
+
+## Interactive model preview
+
+The Projects page dynamically loads `model-viewer.js` (Three.js) and `public/models/chiller-water.glb`. The GLB was converted from Daniel’s Revit FBX export using Blender 4.3.2. It contains 436 mesh parts and no supplied materials/textures; the viewer applies a neutral blue-gray display material. The original FBX is not published. The viewer supports orbit, pan, zoom, reset, keyboard panning, and fullscreen where supported. Rendering is event-driven rather than continuous.
+
+To remove the test later, remove the `.model-project` section and Projects viewer initialization from `main.js`, remove `model-viewer.js` and `public/models/chiller-water.glb`, uninstall Three.js if unused, and rebuild `docs/`. Keep `public/CNAME` when rebuilding for the custom domain.
