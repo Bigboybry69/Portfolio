@@ -29,3 +29,6 @@ body{background-image:linear-gradient(#28415712 1px,transparent 1px),linear-grad
 .about-strip .strip-inner p{margin-left:auto;text-align:right}
 
 .profile-bio{margin-top:27px;padding-top:23px;border-top:1px solid var(--border)}.profile-bio .eyebrow{font-size:9px;letter-spacing:1.5px;color:var(--blue)}.story-photo .profile-bio p{font-size:13px;line-height:1.9;color:var(--muted);margin:16px 0 0}
+
+/* Responsive YouTube test preview. */
+.video-project{margin-bottom:65px}.video-project .section-heading{gap:20px;margin-bottom:16px}.video-project h2{font-size:36px}.video-project .text-link{white-space:nowrap;color:var(--blue)}.video-intro{font-size:14px;color:var(--muted);line-height:1.9;margin:0 0 23px}.video-frame{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid #304b60;border-radius:12px;background:#0e1c28}.video-frame iframe{display:block;width:100%;height:100%;border:0}.video-frame:focus-within{outline:2px solid var(--blue);outline-offset:4px}@media(max-width:600px){.video-project{margin-bottom:45px}.video-project .section-heading{flex-wrap:wrap;gap:12px}.video-project h2{font-size:30px}.video-project .section-heading .text-link{margin-top:0}.video-intro{font-size:13px}.video-frame{border-radius:9px}}
