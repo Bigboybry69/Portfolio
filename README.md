@@ -30,7 +30,7 @@ The `docs/` folder contains the published build. In repository Settings → Page
 
 ## Custom domain
 
-The site uses `dli95.com`, declared in `public/CNAME` and copied to `docs/CNAME` during builds. Configure GitHub Pages with this custom domain. At the domain provider, point the apex (`@`) A records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`; point `www` via CNAME to `bigboybry69.github.io`. Enable Enforce HTTPS in GitHub Pages once the certificate is ready.
+The portfolio uses `portfolio.dli95.com`, declared in `public/CNAME` and copied to `docs/CNAME` during builds. Set the GitHub Pages custom domain to `portfolio.dli95.com`. At GoDaddy, the `portfolio` CNAME points to `bigboybry69.github.io`. Existing apex (`@`) and `www` records are separate and should only be changed when configuring their intended website or redirect. Enable Enforce HTTPS in GitHub Pages once the certificate is ready.
 
 ## About Me
 
