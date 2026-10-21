@@ -35,3 +35,7 @@ The portfolio uses `portfolio.dli95.com`, declared in `public/CNAME` and copied 
 ## About Me
 
 `my-story.html` shares Daniel’s personal account of growing up around residential construction, his interest in technology, and his résumé-based career context. Edit the story content in `main.js`.
+
+## INL academic building concept
+
+`inl-building.html` presents Daniel’s team school project with an interactive viewer (`model-viewer.js`). The GLB in `public/models/inl-building.glb` was converted from the supplied FBX using Blender. It contains geometry without materials/textures, so the viewer uses a neutral display material. The original FBX is not published. The Three.js viewer is loaded only on this project page; Home and Projects use `public/images/inl-building-preview.png`. Sustainability and daylighting are stated design goals, not measured performance claims.
