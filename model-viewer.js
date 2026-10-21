@@ -38,7 +38,7 @@ export async function initModelViewer() {
       render();
     };
     new ResizeObserver(resize).observe(stage);
-    const gltf = await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}models/inl-building.glb`);
+    const gltf = await new GLTFLoader().loadAsync(new URL('./models/inl-building.glb', import.meta.url).href);
     const model = gltf.scene;
     const bounds = new THREE.Box3().setFromObject(model);
     const size = bounds.getSize(new THREE.Vector3());
@@ -53,7 +53,17 @@ export async function initModelViewer() {
     const frameMaterial = new THREE.LineBasicMaterial({ color: 0x596974, transparent: true, opacity: 0.85 });
     const panes = [];
     model.traverse(object => {
-      if (object.isMesh && object.name.startsWith('System_Panel_Glazed')) panes.push(object);
+      if (!object.isMesh) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach(material => {
+        if (material.name === 'Courtyard grass') {
+          material.color.set('#659c35');
+          material.roughness = 1;
+          material.metalness = 0;
+          material.side = THREE.DoubleSide;
+        }
+      });
+      if (object.name.startsWith('System_Panel_Glazed')) panes.push(object);
     });
     panes.forEach(pane => {
       const edges = new THREE.LineSegments(new THREE.EdgesGeometry(pane.geometry, 25), frameMaterial);
