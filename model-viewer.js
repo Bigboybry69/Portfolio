@@ -15,8 +15,8 @@ export async function initModelViewer() {
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, 1, 0.01, 300);
-    scene.add(new THREE.HemisphereLight(0xc8e6ff, 0x334558, 3));
-    const key = new THREE.DirectionalLight(0xffffff, 3);
+    scene.add(new THREE.HemisphereLight(0xe1efff, 0x53614b, 2));
+    const key = new THREE.DirectionalLight(0xffffff, 2);
     key.position.set(5, 10, 8);
     scene.add(key);
     const rim = new THREE.DirectionalLight(0x79c5ff, 2);
@@ -48,8 +48,17 @@ export async function initModelViewer() {
     const scale = 10 / largest;
     model.position.copy(center).multiplyScalar(-scale);
     model.scale.setScalar(scale);
-    const material = new THREE.MeshStandardMaterial({ color: 0xaac7d7, metalness: 0.15, roughness: 0.5, side: THREE.DoubleSide });
-    model.traverse(object => { if (object.isMesh) object.material = material; });
+    // Preserve the presentation materials assigned to the exported model.
+    // Thin steel-colored outlines make individual curtain-wall panels legible.
+    const frameMaterial = new THREE.LineBasicMaterial({ color: 0x596974, transparent: true, opacity: 0.85 });
+    const panes = [];
+    model.traverse(object => {
+      if (object.isMesh && object.name.startsWith('System_Panel_Glazed')) panes.push(object);
+    });
+    panes.forEach(pane => {
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(pane.geometry, 25), frameMaterial);
+      pane.add(edges);
+    });
     scene.add(model);
     // Frame a bounding sphere so the initial view fits portrait and landscape screens.
     const reset = () => {
