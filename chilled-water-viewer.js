@@ -82,12 +82,12 @@ export async function initChilledWaterViewer() {
     const modeSelect = document.querySelector('#chw-color-mode');
     let selected = null;
     const fields = document.querySelector('.component-details');
-    const colors = { CHWS: 0x58b7f0, CHWR: 0xeea263, Unassigned: 0x979fa5 };
+    const colors = { CHWS: 0x58b7f0, CHWR: 0xeea263, CRAH: 0x979fa5 };
     const paint = () => {
       components.forEach(mesh => {
         mesh.material.copy(originalMaterials.get(mesh));
         if (modeSelect.value === 'systems') {
-          mesh.material.color.setHex(colors[mesh.userData.system] ?? colors.Unassigned);
+          mesh.material.color.setHex(colors[mesh.userData.system] ?? colors.CRAH);
           mesh.material.metalness = 0.1;
           mesh.material.roughness = 0.6;
         }
