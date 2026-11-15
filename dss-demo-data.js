@@ -1,3 +1,4 @@
+import { assignSystemDetail } from './dss-demo-systems.js';
 // Synthetic coordination scenarios informed by qualitative experience, not measured results.
 export const projects = ['PHX-01 · Sonoran', 'PHX-02 · Saguaro', 'DFW-01 · Trinity', 'DFW-02 · Prairie', 'IAD-01 · Potomac', 'IAD-02 · Blue Ridge', 'ATL-01 · Peachtree', 'PDX-01 · Cascade'];
 export const trades = ['Mechanical', 'Plumbing', 'Electrical', 'Fire', 'Structure', 'Architecture'];
@@ -22,7 +23,7 @@ const scenarios = [
   { a: 3, b: 4, n: 140, severity: [24, 35, 30, 11], area: [55, 8, 32, 5] },
   { a: 3, b: 5, n: 45, severity: [7, 28, 43, 22], area: [42, 8, 48, 2] },
   { a: 4, b: 5, n: 35, severity: [14, 26, 40, 20], area: [50, 5, 40, 5] },
-  // Same-trade coordination is counted once, including in matrix diagonal cells.
+  // Same-trade coordination is counted once, shown in the separate MEP systems tab.
   { a: 2, b: 2, n: 1600, severity: [2, 13, 53, 32], area: [6, 7, 77, 10] },
   { a: 1, b: 1, n: 600, severity: [3, 15, 51, 31], area: [68, 2, 7, 23] },
   { a: 0, b: 0, n: 180, severity: [12, 31, 41, 16], area: [78, 8, 12, 2] },
@@ -77,6 +78,8 @@ export const issues = scenarios.flatMap(({ a, b, n, severity, area }, pairIndex)
       days: resolved ? Math.round(duration * 10) / 10 : null, scope: scopeFor(tradePair, selectedArea) };
   })
 );
+for (const issue of issues) issue.systemDetail = assignSystemDetail(issue);
+
 export const areaNotes = {
   'Mechanical rooms': 'Dense multi-trade routing and larger mechanical / structural or fire conflicts drive risk. Most plumbing clashes are within plumbing and are less severe.',
   'Data halls': 'Repeated layouts and more available space mean fewer, less severe conflicts; maintain consistent routing and service clearances.',

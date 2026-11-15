@@ -69,7 +69,7 @@ test('area selection preserves priority baseline and handles empty scopes', () =
   assert.ok(rankAreas([]).every(x=>x.score===0 && x.days===null));
 });
 
-test('pair totals partition unique issues including same-trade diagonal cells', () => {
+test('pair totals partition unique issues including internal system categories', () => {
   const sum = pairSpecs.reduce((total,[a,b])=>total+pair(trades[a],trades[b]).length,0);
   assert.equal(sum,issues.length);
   for(const [a,b,n] of pairSpecs) assert.equal(pair(trades[a],trades[b]).length,n);
